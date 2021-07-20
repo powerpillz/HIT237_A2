@@ -1,0 +1,43 @@
+{% extends "beamish2_app/site_base.html" %}
+{% load static %}
+
+{% block subheading1 %}
+{% endblock %}
+
+{% block content1 %}
+
+<table class="table table-hover">
+  <thead>
+    <tr style="background-color:#CABD93">
+      <th scope="col">Site Name</th>
+      <th scope="col">Owners</th>
+      <th scope="col">Location</th>
+      <th scope="col">Region</th>
+      <th scope="col">Minerals</th>
+      <th scope="col">Production</th>
+      <th scope="col"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in mine_list %}
+    <tr>
+      <td><a href= "{% url 'viewMines' item.id %}">{{ item.site_name }}</a></td>
+      <td>{% for company in item.owners.all %}
+      {{ company }}<br>
+      {% endfor %}</td>
+      <td>{{ item.location }}</td>
+      <td>{{ item.region }}</td>
+      <td>{% for mineral in item.minerals.all %}
+      {{ mineral }}<br>
+      {% endfor %}</td>
+      <td>{{ item.production }}</td>
+      <td>
+        <a href="{% url 'updateMines' item.id %}" class="badge badge-warning">Update</a> /
+        <a href="{% url 'deleteMines' item.id %}" class="badge badge-danger">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

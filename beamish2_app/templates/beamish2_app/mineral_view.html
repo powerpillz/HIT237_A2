@@ -1,0 +1,26 @@
+{% extends "beamish2_app/site_base.html" %}
+{% load static %}
+
+{% block subheading1 %}
+{% endblock %}
+
+{% block content1 %}
+
+<div class="card">
+  <h5 class="card-header" style="background-color: #CABD93" align="center">{{ mineral.mineral_name }} Fact Sheet</h5>
+  <div class="card-body">
+    <h5 class="card-title">Additional Information</h5>
+    <p class="card-text">{{ mineral.description }}</p>
+    <h5 class="card-title">{{ mineral.mineral_name }} Properties</h5>
+    <p class="card-text">
+      <ul>
+        <li>Periodic Table Symbol: {{ mineral.symbol }}</li>
+        <li>Atomic Number: {{ mineral.atomic_num }}</li>
+        <li>Appearance: {{ mineral.appearance }}</li>
+      </ul>
+    </p>
+    <a href="{% url 'listMineral' %}" class="btn btn-light" style="background-color: #CABD93">Go Back</a>
+  </div>
+</div>
+
+{% endblock %}

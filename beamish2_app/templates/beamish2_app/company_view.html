@@ -1,0 +1,28 @@
+{% extends "beamish2_app/site_base.html" %}
+{% load static %}
+
+{% block subheading1 %}
+{% endblock %}
+
+{% block content1 %}
+
+<div class="card">
+  <h5 class="card-header" style="background-color: #CABD93" align="center">{{ company.company_name }} Summary</h5>
+  <div class="card-body">
+    <h5 class="card-title">Additional Information</h5>
+    <p class="card-text">
+      <ul>
+        <li>ASX Code: {{ company.asx_code }}</li>
+        <li>Website: <a href="{{ company.website }}" target="_blank">{{ company.website }}</a></li>
+        <li>CEO: {{ company.chief_officer }}</li>
+        <li>Mineral Profile: {% for precious in company.mineral_profile.all %}
+          {{ precious }}
+          {% endfor %}
+        </li>
+      </ul>
+    </p>
+    <a href="{% url 'listCompany' %}" class="btn btn-light" style="background-color: #CABD93">Go Back</a>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "beamish2_app/site_base.html" %}
+{% load static %}
+
+{% block subheading1 %}
+{% endblock %}
+
+{% block content1 %}
+
+<table class="table table-hover">
+  <thead>
+    <tr style="background-color:#CABD93">
+      <th scope="col">Company Name</th>
+      <th scope="col">Website</th>
+      <th scope="col">CEO</th>
+      <th scope="col">Mineral Profile</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in company_list %}
+    <tr>
+      <td><a href= "{% url 'viewCompany' item.id %}">{{ item.company_name }}</a></td>
+      <td>{{ item.website }}</td>
+      <td>{{ item.chief_officer }}</td>
+      <td>{% for mineral in item.mineral_profile.all %}
+      {{ mineral }}<br>
+      {% endfor %}</td>
+      <td>
+        <a href="{% url 'updateCompany' item.id %}" class="badge badge-warning">Update</a> /
+        <a href="{% url 'deleteCompany' item.id %}" class="badge badge-danger">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

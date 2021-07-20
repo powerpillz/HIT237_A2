@@ -1,0 +1,32 @@
+{% extends "beamish2_app/site_base.html" %}
+{% load static %}
+
+{% block subheading1 %}
+{% endblock %}
+
+{% block content1 %}
+
+<div class="card">
+  <h5 class="card-header" style="background-color: #CABD93" align="center">{{ mine.site_name }} Summary</h5>
+  <div class="card-body">
+    <h5 class="card-title">Additional Information</h5>
+    <p class="card-text">
+      <ul>
+        <li>Current Owner / Lease Holder: {% for own in mine.owners.all %}
+          {{ own }}
+          {% endfor %}
+        </li>
+        <li>Location: {{ mine.location }}</li>
+        <li>Region: {{ mine.region }}</li>
+        <li>Primary Mineral: {% for precious in mine.minerals.all %}
+          {{ precious }}
+          {% endfor %}
+        </li>
+        <li>Total Troy Ounces Produced: {{ mine.production }} tonnes</li>
+      </ul>
+    </p>
+    <a href="{% url 'listMines' %}" class="btn btn-light" style="background-color: #CABD93">Go Back</a>
+  </div>
+</div>
+
+{% endblock %}

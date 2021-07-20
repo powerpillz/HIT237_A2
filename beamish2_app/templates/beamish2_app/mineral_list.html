@@ -1,0 +1,33 @@
+{% extends "beamish2_app/site_base.html" %}
+{% load static %}
+
+{% block subheading1 %}
+{% endblock %}
+
+{% block content1 %}
+
+<table class="table table-hover">
+  <thead>
+    <tr style="background-color:#CABD93">
+      <th scope="col">Mineral</th>
+      <th scope="col">Symbol</th>
+      <th scope="col">Atomic #</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in mineral_list %}
+    <tr>
+      <td><a href= "{% url 'viewMineral' item.id %}">{{ item.mineral_name }}</a></td>
+      <td>{{ item.symbol }}</td>
+      <td>{{ item.atomic_num }}</td>
+      <td>
+        <a href="{% url 'updateMineral' item.id %}" class="badge badge-warning">Update</a> /
+        <a href="{% url 'deleteMineral' item.id %}" class="badge badge-danger">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
